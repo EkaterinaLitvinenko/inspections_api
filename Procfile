@@ -1,1 +1,1 @@
-web: gunicorn inspection_api.wsgi --log-file -
+web: gunicorn inspection_api.wsgi
