@@ -9,13 +9,13 @@ class StkEkSerializer(serializers.ModelSerializer):
 class InsuranceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Insurance
-        fields = ['insurance_date', 'valid_to', 'insurance_company', 'policy_number']
+        fields = ['insurance_id', 'insurance_date', 'valid_to', 'insurance_company', 'policy_number']
 
 
 class VignetteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vignette
-        fields = ['type', 'price', 'valid_from', 'valid_to']
+        fields = ['vignette_id', 'type', 'price', 'valid_from', 'valid_to']
 
 class MileageSerializer(serializers.ModelSerializer):
     class Meta:
