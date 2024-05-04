@@ -70,19 +70,23 @@ class EkView(APIView):
 class PzpView(APIView):
     def get(self, request, vin):
         faker = Faker()
-        insurance = Insurance.objects.filter(vin=vin).first()
-        insurance_date = faker.date_between(start_date='-1y', end_date='today')
-        valid_to = faker.date_between(start_date=insurance_date, end_date='+2y')
-        if not insurance:
-            insurance = Insurance.objects.create(
-                vin=vin,
-                insurance_date=insurance_date,
-                valid_to=valid_to,
-                insurance_company=faker.company(),
-                policy_number=faker.bothify(text='???-#######'),
-            )
+        insurances = list(Insurance.objects.filter(vin=vin))
 
-        serializer = InsuranceSerializer(insurance)
+        if not insurances:
+            num_insurances = random.randint(1, 3)
+            for _ in range(num_insurances):
+                insurance_date = faker.date_between(start_date='-1y', end_date='today')
+                valid_to = faker.date_between(start_date=insurance_date, end_date='+2y')
+                insurance = Insurance.objects.create(
+                    vin=vin,
+                    insurance_date=insurance_date,
+                    valid_to=valid_to,
+                    insurance_company=faker.company(),
+                    policy_number=faker.bothify(text='???-#######'),
+                )
+                insurances.append(insurance)
+
+        serializer = InsuranceSerializer(insurances, many=True)
         return Response(serializer.data)
 
 
