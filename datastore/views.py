@@ -1,10 +1,10 @@
-from datetime import timezone, timedelta
 
 from faker import Faker
 from faker.generator import random
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from datetime import datetime, timedelta
+import random
 from .models import StkEk, Insurance, Vignette, Mileage
 from .serializers import StkEkSerializer, InsuranceSerializer, VignetteSerializer, MileageSerializer
 
@@ -113,7 +113,7 @@ class ZnamkaView(APIView):
 
                 if type_choice == 'Annual':
                     next_year = valid_from.year + 1
-                    valid_to = timezone.datetime(next_year, 1, 1).date()
+                    valid_to = datetime(next_year, 1, 1).date()  # Corrected usage
                 elif type_choice == '365':
                     valid_to = valid_from + timedelta(days=365)
                 elif type_choice == '30':
@@ -130,7 +130,6 @@ class ZnamkaView(APIView):
                 )
                 vignettes.append(new_vignette)
 
-        # Serialize and return all vignettes
         serializer = VignetteSerializer(vignettes, many=True)
         return Response(serializer.data)
 

@@ -30,7 +30,7 @@ class Insurance(models.Model):
 
 class Vignette(models.Model):
     vignette_id = models.AutoField(primary_key=True)
-    vin = models.CharField(max_length=17, primary_key=True)
+    vin = models.CharField(max_length=17)
     type = models.CharField(max_length=50)
     valid_from = models.DateField()
     valid_to = models.DateField()
