@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
                 ('insurance_id', models.AutoField(primary_key=True, serialize=False)),
                 ('vin', models.CharField(max_length=17)),
                 ('insurance_date', models.DateField()),
+                ('valid_to', models.DateField()),
                 ('insurance_company', models.CharField(max_length=100)),
                 ('policy_number', models.CharField(max_length=50)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
@@ -42,6 +43,7 @@ class Migration(migrations.Migration):
                 ('inspection_id', models.AutoField(primary_key=True, serialize=False)),
                 ('vin', models.CharField(max_length=17)),
                 ('inspection_date', models.DateField()),
+                ('valid_to', models.DateField()),
                 ('service_address', models.CharField(max_length=255)),
                 ('inspection_type', models.CharField(max_length=10)),
                 ('protocol', models.CharField(max_length=255)),
@@ -53,7 +55,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Vignette',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('vignette_id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('vin', models.CharField(max_length=17)),
                 ('type', models.CharField(max_length=50)),
                 ('valid_from', models.DateField()),

@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from datetime import datetime, timedelta
 import random
 from .models import StkEk, Insurance, Vignette, Mileage
-from .serializers import StkEkSerializer, InsuranceSerializer, VignetteSerializer, MileageSerializer
+from .serializers import StkEkSerializer, InsuranceSerializer, VignetteSerializer
 
 
 class StkView(APIView):
